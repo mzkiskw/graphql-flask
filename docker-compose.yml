@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  graphql:
+    build: .
+    volumes:
+      - ./:/app:cached
+    ports:
+      - "5000:5000"
+    tty: true
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+    ports:
+        - "3306:3306"
